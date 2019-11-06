@@ -25,7 +25,12 @@
     Version:        1.0
     Author:         Zack Mutchler
     Creation Date:  11/05/2019
-    Purpose/Change: Initial Script development.  
+    Purpose/Change: Initial Script development.
+    
+    Version:        1.1
+    Author:         Zack Mutchler
+    Creation Date:  11/05/2019
+    Purpose/Change: Updated to grab UUID from results. 
 #>
 
 #endregion
@@ -89,11 +94,11 @@ $body = @"
 }
 "@
 
-# Show the payload we sent as the Synthetics API gives no response
-Write-Output -InputObject $body
-
 # POST to the REST API
-$results = Invoke-RestMethod -Method Post -Uri $uri -Headers $headers -Body $body
+$request = Invoke-WebRequest -Method Post -Uri $uri -Headers $headers -Body $body
+
+# Grab the UUID of the created check
+$results = $request.Headers["Location"].Split("/")[-1]
 
 RETURN $results
 
