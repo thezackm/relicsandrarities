@@ -82,10 +82,10 @@ $requestMonitor = Invoke-WebRequest -Method Post -Uri $uri -Headers $headers -Bo
 $monitorID = $requestMonitor.Headers.Location.Split('/')[-1]
 
 # Convert script file to BASE64 encoding
-$scriptPayload = ConvertTo-Json @{"scriptText" = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(Get-Content -Raw $ScriptFile))}
+$scriptPayload = ConvertTo-Json @{"scriptText" = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes((Get-Content -Encoding UTF8 -Raw $ScriptFile)))}
 
 # PUT script via the REST API
-$requestScript = Invoke-WebRequest -Method Put -Uri $uri$monitorID'/script' -Headers $headers -Body $scriptPayload
+$requestScript = Invoke-WebRequest -Method Put -Uri $uri$monitorID/script -Headers $headers -Body $scriptPayload
 
 RETURN $monitorID
 
