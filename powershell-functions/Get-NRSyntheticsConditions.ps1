@@ -11,7 +11,7 @@
     https://docs.newrelic.com/docs/alerts/rest-api-alerts/new-relic-alerts-rest-api/rest-api-calls-new-relic-alerts#synthetics-conditions-list
 
 .EXAMPLE
-    Get-SyntheticsConditions -AccountAPIKey '1a2b3c4d5e6f' -PolicyID '123456'
+    Get-NRSyntheticsConditions -AccountAPIKey '1a2b3c4d5e6f' -PolicyID '123456'
         List all Synthetics Conditions for the Alert Policy
 
 .NOTES
@@ -25,7 +25,7 @@
 
 #####-----------------------------------------------------------------------------------------#####
 
-Function Get-SyntheticsConditions {
+Function Get-NRSyntheticsConditions {
 
     Param (
 
